@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPlane, FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPlane, FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { useStore, translations } from '../store/useStore';
 
@@ -20,24 +20,24 @@ export default function VuelosTransportePage() {
 
   return (
     <div className="bg-[#F5F4EC] min-h-screen animate-fade-in">
-      <SEO 
-        title={language === 'es' ? 'Vuelos y Transporte | Obelisco Travel' : 'Flights and Transport | Obelisco Travel'} 
+      <SEO
+        title={language === 'es' ? 'Vuelos y Transporte | Obelisco Travel' : 'Flights and Transport | Obelisco Travel'}
         description={t.vuelosSubtitle}
       />
-      
+
       {/* Top Split Section */}
       <section className="relative pt-20 pb-16 lg:py-0 overflow-hidden animate-fade-in-up">
         {/* Diagonal striped background pattern */}
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #1A2530 0, #1A2530 1px, transparent 0, transparent 50%)', backgroundSize: '10px 10px' }}></div>
-        
+
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2">
-          
+
           {/* Left Text / Form Side */}
           <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 py-16 lg:py-32 flex flex-col justify-center">
             <div className="inline-block bg-[#927429] text-white font-bold text-[10px] tracking-widest px-3 py-1 mb-6 shadow-[2px_2px_0px_0px_#1A2530] w-max uppercase">
               {t.vuelosBadge}
             </div>
-            
+
             <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black uppercase leading-[0.85] tracking-tighter mb-8">
               {language === 'es' ? (
                 <>
@@ -51,51 +51,51 @@ export default function VuelosTransportePage() {
                 </>
               )}
             </h1>
-            
+
             <p className="text-[#1A2530]/80 font-medium max-w-md border-l-4 border-[#927429] pl-4 mb-10 text-sm">
               {t.vuelosSubtitle}
             </p>
-            
+
             {/* Search Form */}
             <div className="bg-white border-2 border-[#1A2530] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#1A2530] relative z-20">
               <div className="flex flex-col sm:flex-row gap-6 mb-6">
                 <div className="flex-1 border-b-2 border-[#1A2530] pb-2 relative">
                   <label className="text-[10px] font-bold text-[#1A2530]/60 uppercase tracking-widest mb-1 block">{t.vuelosFormOrigen}</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={origen}
                     onChange={(e) => setOrigen(e.target.value)}
-                    placeholder={t.vuelosFormOrigenPlaceholder} 
-                    className="w-full bg-transparent text-sm font-medium text-[#1A2530] outline-none placeholder-[#1A2530]/40" 
+                    placeholder={t.vuelosFormOrigenPlaceholder}
+                    className="w-full bg-transparent text-sm font-medium text-[#1A2530] outline-none placeholder-[#1A2530]/40"
                   />
                   <FaPlane className="absolute right-0 bottom-2 w-4 h-4 text-[#1A2530] opacity-50" />
                 </div>
                 <div className="flex-1 border-b-2 border-[#1A2530] pb-2 relative">
                   <label className="text-[10px] font-bold text-[#1A2530]/60 uppercase tracking-widest mb-1 block">{t.vuelosFormDestino}</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={destino}
                     onChange={(e) => setDestino(e.target.value)}
-                    placeholder={t.vuelosFormDestinoPlaceholder} 
-                    className="w-full bg-transparent text-sm font-medium text-[#1A2530] outline-none placeholder-[#1A2530]/40" 
+                    placeholder={t.vuelosFormDestinoPlaceholder}
+                    className="w-full bg-transparent text-sm font-medium text-[#1A2530] outline-none placeholder-[#1A2530]/40"
                   />
                   <FaPlane className="absolute right-0 bottom-2 w-4 h-4 text-[#1A2530] opacity-50 rotate-90" />
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
+                <button
                   onClick={() => alert(language === 'es' ? `Buscando rutas disponibles desde ${origen || 'tu origen'} hacia ${destino || 'tu destino'}...` : `Searching available routes from ${origen || 'your origin'} to ${destino || 'your destination'}...`)}
                   className="flex-1 bg-[#1A2530] hover:bg-[#927429] text-white font-black text-[10px] sm:text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center border-2 border-transparent cursor-pointer"
                 >
                   {t.vuelosButtonSearch} <FaArrowRight className="w-4 h-4 ml-2" />
                 </button>
-                <button 
+                <button
                   onClick={handleWhatsAppConsult}
                   className="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-[10px] sm:text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center border-2 border-[#1A2530] shadow-[4px_4px_0px_0px_#000] gap-2 cursor-pointer"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.114-2.906-6.99C16.452 1.875 13.974.843 11.34.843 5.902.843 1.48 5.263 1.478 10.702c-.001 1.698.443 3.355 1.288 4.845L1.83 20.89l5.59-1.464-.773-.472z"/>
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.114-2.906-6.99C16.452 1.875 13.974.843 11.34.843 5.902.843 1.48 5.263 1.478 10.702c-.001 1.698.443 3.355 1.288 4.845L1.83 20.89l5.59-1.464-.773-.472z" />
                   </svg>
                   {t.vuelosButtonWA}
                 </button>
@@ -106,9 +106,9 @@ export default function VuelosTransportePage() {
           {/* Right Image Side */}
           <div className="relative lg:min-h-screen flex items-center justify-center p-4 lg:p-12 hidden lg:flex">
             <div className="absolute inset-y-12 right-0 w-[90%] bg-[#1A2530] shadow-[-16px_16px_0px_0px_#1A2530]">
-              <img 
-                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop" 
-                alt="Plane landing at sunset" 
+              <img
+                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop"
+                alt="Plane landing at sunset"
                 className="w-full h-full object-cover opacity-90"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[#1A2530]/40 to-transparent mix-blend-overlay"></div>
@@ -120,14 +120,14 @@ export default function VuelosTransportePage() {
       {/* Bottom Features Section */}
       <section className="bg-[#2D3A4B] py-20 lg:py-28 animate-fade-in-up">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
             <h2 className="text-5xl sm:text-7xl font-black uppercase leading-[0.9] tracking-tighter">
               <span className="text-white block">{language === 'es' ? 'MUEVETE' : 'MOVE'}</span>
               <span className="text-[#927429] block">{language === 'es' ? 'RÁPIDO' : 'FAST'}</span>
             </h2>
             <p className="text-white/70 max-w-sm text-right text-sm font-medium">
-              {language === 'es' 
+              {language === 'es'
                 ? 'Conexiones aéreas y terrestres diseñadas para los que no tienen tiempo que perder.'
                 : 'Air and ground connections designed for those who have no time to waste.'}
             </p>
@@ -140,7 +140,7 @@ export default function VuelosTransportePage() {
                 {language === 'es' ? 'VUELOS DIRECTOS' : 'DIRECT FLIGHTS'}
               </div>
               <h3 className="text-2xl sm:text-4xl font-black text-[#1A2530] uppercase leading-[0.9] tracking-tight mb-4">
-                {language === 'es' ? <>Saltos <br/> Globales</> : <>Global <br/> Hops</>}
+                {language === 'es' ? <>Saltos <br /> Globales</> : <>Global <br /> Hops</>}
               </h3>
               <p className="text-[#1A2530]/80 text-xs font-medium">
                 {language === 'es' ? 'Sin escalas, directo a la acción.' : 'Non-stop, straight to the action.'}
@@ -153,7 +153,7 @@ export default function VuelosTransportePage() {
                 {language === 'es' ? 'NIVEL: EXTREMO' : 'LEVEL: EXTREME'}
               </div>
               <h3 className="text-2xl sm:text-4xl font-black text-[#1A2530] uppercase leading-[0.9] tracking-tight mb-4">
-                {language === 'es' ? <>Traslados <br/> Salvajes</> : <>Wild <br/> Transfers</>}
+                {language === 'es' ? <>Traslados <br /> Salvajes</> : <>Wild <br /> Transfers</>}
               </h3>
               <p className="text-[#1A2530]/60 text-xs font-medium">
                 {language === 'es' ? 'Vehículos 4x4 para terrenos imposibles.' : '4x4 vehicles for impossible terrain.'}
@@ -166,7 +166,7 @@ export default function VuelosTransportePage() {
                 {language === 'es' ? 'ALTA VELOCIDAD' : 'HIGH SPEED'}
               </div>
               <h3 className="text-2xl sm:text-4xl font-black text-white uppercase leading-[0.9] tracking-tight mb-4">
-                {language === 'es' ? <>Rieles <br/> Nocturnos</> : <>Night <br/> Rails</>}
+                {language === 'es' ? <>Rieles <br /> Nocturnos</> : <>Night <br /> Rails</>}
               </h3>
               <p className="text-white/60 text-xs font-medium">
                 {language === 'es' ? 'Cruza países mientras duermes.' : 'Cross countries while you sleep.'}
@@ -174,6 +174,59 @@ export default function VuelosTransportePage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/51999999999"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors animate-bounce"
+      >
+        <FaWhatsapp className="w-6 h-6" />
+      </a>
+
+      {/* Testimonials Section */}
+      <section className="bg-[#1A2530] py-20 lg:py-28 animate-fade-in-up">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-black text-center text-white mb-12 animate-fade-in-up delay-100">
+            {language === 'es' ? 'Testimonios' : 'Testimonials'}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-[#927429] p-6 text-white rounded-lg shadow-md animate-fade-in-up delay-200">
+              <p className="italic mb-4">{language === 'es' ? '¡Una experiencia increíble! El tour superó mis expectativas.' : 'An incredible experience! The tour exceeded my expectations.'}</p>
+              <p className="font-bold">— Juan Pérez</p>
+            </div>
+            <div className="bg-[#927429] p-6 text-white rounded-lg shadow-md animate-fade-in-up delay-300">
+              <p className="italic mb-4">{language === 'es' ? 'Guías expertos y paisajes de ensueño.' : 'Expert guides and dreamy landscapes.'}</p>
+              <p className="font-bold">— María Gómez</p>
+            </div>
+            <div className="bg-[#927429] p-6 text-white rounded-lg shadow-md animate-fade-in-up delay-400">
+              <p className="italic mb-4">{language === 'es' ? 'Servicio impecable, volveré sin dudas.' : 'Flawless service, I will definitely return.'}</p>
+              <p className="font-bold">— Carlos Ruiz</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="bg-[#F5F4EC] py-20 lg:py-28 animate-fade-in-up">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-black text-center text-[#1A2530] mb-12 animate-fade-in-up delay-100">
+            {language === 'es' ? 'Galería de Destinos' : 'Destination Gallery'}
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[1,2,3,4,5,6,7,8].map((i) => (
+              <div key={i} className="relative overflow-hidden rounded-lg shadow-lg group">
+                <img
+                  src={`https://images.unsplash.com/photo-${i}0?auto=format&fit=crop&w=400&q=80`}
+                  alt="Destination"
+                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

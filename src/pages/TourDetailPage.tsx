@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Map, Clock, Users, Zap } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useStore, translations } from '../store/useStore';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import '../components/calendar.css';
 
 // Bilingual Tour details data focusing heavily on Peru and Ayacucho
 const tourDetailsDataBilingual: Record<'es' | 'en', Record<string, any>> = {
@@ -132,6 +135,7 @@ export default function TourDetailPage() {
   const [fullName, setFullName] = React.useState('');
   const [emailAddress, setEmailAddress] = React.useState('');
   const [motivation, setMotivation] = React.useState('');
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
   const sendWhatsApp = () => {
     const message = language === 'es'
@@ -317,6 +321,14 @@ export default function TourDetailPage() {
                   placeholder={t.tourDetailFormMotivationPlaceholder}
                   required
                 ></textarea>
+            {/* Calendar for selecting tour date */}
+            <div className="mt-4 max-w-[300px] mx-auto bg-[#1A2530] p-4 rounded-lg shadow-lg">
+                <Calendar
+                  onChange={(value) => setSelectedDate(value as Date)}
+                  value={selectedDate ?? undefined}
+                  className="react-calendar"
+                />
+            </div>
               </div>
               
               <div className="flex flex-col gap-3 pt-4">

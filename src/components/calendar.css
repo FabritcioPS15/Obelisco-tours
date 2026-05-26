@@ -1,0 +1,49 @@
+/* Custom styling for react-calendar to match the Obelisco Travel premium theme */
+/* This file uses Tailwind's @apply directive, which is processed by the Tailwind build */
+
+.react-calendar {
+  @apply bg-[#1A2530] text-[#F5F4EC] rounded-lg p-2 shadow-lg;
+}
+
+.react-calendar__navigation {
+  @apply flex justify-between mb-2;
+}
+
+.react-calendar__navigation button {
+  @apply text-[#F5F4EC] hover:text-[#927429] font-bold;
+}
+
+.react-calendar__month-view__weekdays {
+  @apply flex justify-between mb-1;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  @apply w-8 text-xs text-[#F5F4EC]/70;
+}
+
+.react-calendar__tile {
+  @apply w-8 h-8 flex items-center justify-center rounded-md cursor-pointer text-sm;
+  @apply bg-transparent border border-[#F5F4EC]/20 text-[#F5F4EC];
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.react-calendar__tile:hover {
+  @apply bg-[#927429] border-[#927429] text-[#F5F4EC];
+}
+
+.react-calendar__tile--active {
+  @apply bg-[#41F0A5] text-[#1A2530] font-bold;
+}
+
+.react-calendar__tile--now {
+  @apply border-2 border-[#927429] shadow-inner;
+}
+
+.react-calendar__tile--range {
+  @apply bg-[#927429]/30;
+}
+
+.react-calendar__tile--rangeStart,
+.react-calendar__tile--rangeEnd {
+  @apply bg-[#927429] text-[#F5F4EC] font-bold;
+}

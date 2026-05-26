@@ -37,6 +37,42 @@ export default function CatalogoToursPage() {
         badge: { text: 'RECOMENDADO', color: 'bg-[#927429]' },
         icon: <Map className="w-5 h-5 text-[#1A2530]" />,
       },
+        {
+          id: 'apurimac-canyon',
+          title: 'CAÑÓN DEL RÍO APURÍMAC AVENTURA',
+          tags: 'Kayak • Rafting • Naturaleza',
+          description: 'Descubre la fuerza del río Apurímac con emocionantes rutas de kayak y rafting, rodeado de paisajes de alta montaña y bosques nubosos.',
+          image: 'https://images.unsplash.com/photo-1516912911104-8d1bc9e2e2f2?q=80&w=2070&auto=format&fit=crop',
+          badge: { text: 'AVENTURA', color: 'bg-[#1E3A8A]' },
+          icon: <Compass className="w-5 h-5 text-[#1A2530]" />, 
+        },
+        {
+          id: 'tambopata-reserve',
+          title: 'RESERVA NATURAL DE TAMBOPATA',
+          tags: 'Selva • Biodiversidad • Eco‑turismo',
+          description: 'Explora la selva amazónica peruana, avista jaguares, guacamayos y vive una inmersión total en la naturaleza con guías locales.',
+          image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop',
+          badge: { text: 'ECO‑TURISMO', color: 'bg-[#0F9D58]' },
+          icon: <Mountain className="w-5 h-5 text-[#1A2530]" />, 
+        },
+        {
+          id: 'apurimac-canyon',
+          title: 'CAÑÓN DEL RÍO APURÍMAC AVENTURA',
+          tags: 'Kayak • Rafting • Naturaleza',
+          description: 'Descubre la fuerza del río Apurímac con emocionantes rutas de kayak y rafting, rodeado de paisajes de alta montaña y bosques nubosos.',
+          image: 'https://images.unsplash.com/photo-1516912911104-8d1bc9e2e2f2?q=80&w=2070&auto=format&fit=crop',
+          badge: { text: 'AVENTURA', color: 'bg-[#1E3A8A]' },
+          icon: <Compass className="w-5 h-5 text-[#1A2530]" />, 
+        },
+        {
+          id: 'tambopata-reserve',
+          title: 'RESERVA NATURAL DE TAMBOPATA',
+          tags: 'Selva • Biodiversidad • Eco‑turismo',
+          description: 'Explora la selva amazónica peruana, avista jaguares, guacamayos y vive una inmersión total en la naturaleza con guías locales.',
+          image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop',
+          badge: { text: 'ECO‑TURISMO', color: 'bg-[#0F9D58]' },
+          icon: <Mountain className="w-5 h-5 text-[#1A2530]" />, 
+        },
     ],
     en: [
       {
@@ -66,6 +102,24 @@ export default function CatalogoToursPage() {
         badge: { text: 'RECOMMENDED', color: 'bg-[#927429]' },
         icon: <Map className="w-5 h-5 text-[#1A2530]" />,
       },
+        {
+          id: 'apurimac-canyon',
+          title: 'APURIMAC RIVER CANYON ADVENTURE',
+          tags: 'Kayak • Rafting • Nature',
+          description: 'Experience the power of the Apurímac River with thrilling kayak and rafting routes, set amidst high‑mountain landscapes and cloud forests.',
+          image: 'https://images.unsplash.com/photo-1516912911104-8d1bc9e2e2f2?q=80&w=2070&auto=format&fit=crop',
+          badge: { text: 'ADVENTURE', color: 'bg-[#1E3A8A]' },
+          icon: <Compass className="w-5 h-5 text-[#1A2530]" />, 
+        },
+        {
+          id: 'tambopata-reserve',
+          title: 'TAMBOPATA NATURAL RESERVE',
+          tags: 'Jungle • Biodiversity • Eco‑tourism',
+          description: 'Explore Peru’s Amazon rainforest, spot jaguars, macaws and fully immerse in nature with local guides.',
+          image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop',
+          badge: { text: 'ECO‑TOURISM', color: 'bg-[#0F9D58]' },
+          icon: <Mountain className="w-5 h-5 text-[#1A2530]" />, 
+        },
     ]
   };
 
