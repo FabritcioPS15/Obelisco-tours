@@ -1,4 +1,3 @@
-import { MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
 import HotelCard from '../components/HotelCard';
 import { hotelesData } from './HotelDetailPage';

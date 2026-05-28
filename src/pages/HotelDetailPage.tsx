@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Bed, Coffee, Wifi, Star, X } from 'lucide-react';
 import SEO from '../components/SEO';
-import { useStore, translations } from '../store/useStore';
+import { useStore } from '../store/useStore';
 import { FaWhatsapp } from 'react-icons/fa';
 
 // Dummy data for hotels
@@ -48,7 +48,6 @@ export const hotelesData = {
 export default function HotelDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { language } = useStore();
-  const t = translations[language];
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const hotel = id && hotelesData[id as keyof typeof hotelesData] ? hotelesData[id as keyof typeof hotelesData] : null;

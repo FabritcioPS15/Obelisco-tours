@@ -8,6 +8,9 @@ import GuiasAventuraPage from './pages/GuiasAventuraPage';
 import VuelosTransportePage from './pages/VuelosTransportePage';
 import CatalogoToursPage from './pages/CatalogoToursPage';
 import TourDetailPage from './pages/TourDetailPage';
+import PrivacidadPage from './pages/PrivacidadPage';
+import TerminosPage from './pages/TerminosPage';
+import SostenibilidadPage from './pages/SostenibilidadPage';
 
 // Import Layout components
 import Navbar from './components/Navbar';
@@ -34,6 +37,9 @@ function App() {
             <Route path="/vuelos" element={<VuelosTransportePage />} />
             <Route path="/catalogotours" element={<CatalogoToursPage />} />
             <Route path="/tours/:id" element={<TourDetailPage />} />
+            <Route path="/privacidad" element={<PrivacidadPage />} />
+            <Route path="/terminos" element={<TerminosPage />} />
+            <Route path="/sostenibilidad" element={<SostenibilidadPage />} />
           </Routes>
         </main>
 

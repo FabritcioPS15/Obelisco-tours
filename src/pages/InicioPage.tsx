@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Compass, MapPin, Bed, Plane, } from 'lucide-react';
+import { Compass, MapPin, Bed, Plane } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import { useStore, translations } from '../store/useStore';
@@ -54,6 +55,50 @@ export default function InicioPage() {
     ]
   };
 
+  const heroes = [
+    {
+      image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=2070&auto=format&fit=crop",
+      tag: t.homeTag,
+      title: t.homeTitle,
+      subtitle: t.homeSubtitle,
+      cta: t.homeCTA,
+      link: "/catalogotours"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=2070&auto=format&fit=crop",
+      tag: language === 'es' ? "TOURS EN PERÚ" : "PERU TOURS",
+      title: language === 'es' ? "DESCUBRE AYACUCHO" : "DISCOVER AYACUCHO",
+      subtitle: language === 'es' ? "Rappel en cañones, aguas turquesas de Millpu y la historia viva de Ayacucho." : "Canyon rappelling, turquoise Millpu pools and the living history of Ayacucho.",
+      cta: language === 'es' ? "VER TOURS" : "VIEW TOURS",
+      link: "/catalogotours"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
+      tag: language === 'es' ? "ALOJAMIENTO VIP" : "VIP ACCOMMODATION",
+      title: language === 'es' ? "HOTELES DE ALTO VOLTAJE" : "HIGH VOLTAGE HOTELS",
+      subtitle: language === 'es' ? "Vistas panorámicas y acceso exclusivo a los mejores clubes." : "Panoramic views and exclusive access to the best clubs.",
+      cta: language === 'es' ? "VER HOTELES" : "VIEW HOTELS",
+      link: "/hoteles"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop",
+      tag: language === 'es' ? "GUIAS EXPERTOS" : "EXPERT GUIDES",
+      title: language === 'es' ? "LÍDERES DE AVENTURA" : "ADVENTURE LEADERS",
+      subtitle: language === 'es' ? "Explora lo desconocido con verdaderos insiders locales." : "Explore the unknown with true local insiders.",
+      cta: language === 'es' ? "CONOCER MÁS" : "LEARN MORE",
+      link: "/guias"
+    }
+  ];
+
+  const [currentHero, setCurrentHero] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHero((prev) => (prev + 1) % heroes.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [heroes.length]);
+
   return (
     <div className="bg-[#F5F4EC] min-h-screen overflow-hidden">
       <SEO
@@ -67,38 +112,79 @@ export default function InicioPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-[#1A2530] text-white overflow-hidden animate-fade-in" style={{ minHeight: '85vh' }}>
-        {/* Background Image Overlay */}
-        <div
-          className="absolute inset-0 opacity-40 bg-cover bg-center animate-zoom-in"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=2070&auto=format&fit=crop")' }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A2530] via-[#1A2530]/80 to-transparent"></div>
+      <section className="relative bg-[#1A2530] text-white overflow-hidden h-[85vh]">
+        {heroes.map((hero, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentHero ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-40"
+              style={{ backgroundImage: `url("${hero.image}")` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1A2530] via-[#1A2530]/80 to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-32 pb-20 z-10" style={{ minHeight: '85vh' }}>
-          <div className="max-w-3xl animate-fade-in-down">
-            <div className="inline-block bg-[#F5F4EC] text-black font-bold text-xs tracking-widest px-3 py-1 mb-6 shadow-[4px_4px_0px_0px_#927429]">
-              {t.homeTag}
+            {/* Slide Content */}
+            <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24 pb-20 z-10">
+              <div className={`max-w-3xl ${index === currentHero ? 'animate-fade-in-left' : ''}`}>
+                <div className="inline-block bg-[#F5F4EC] text-black font-bold text-xs tracking-widest px-3 py-1 mb-6 shadow-[4px_4px_0px_0px_#927429]">
+                  {hero.tag}
+                </div>
+                <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tight mb-6">
+                  {hero.title.split(' ').map((word, idx) => (
+                    <span key={idx} className="block">{word}</span>
+                  ))}
+                </h1>
+                <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-xl font-medium">
+                  {hero.subtitle}
+                </p>
+                <button
+                  onClick={() => navigate(hero.link)}
+                  className="bg-[#927429] hover:bg-[#7a6021] text-white font-bold text-sm tracking-wider uppercase px-8 py-4 flex items-center gap-3 transition-colors shadow-[6px_6px_0px_0px_#000] cursor-pointer w-max"
+                >
+                  {hero.cta}
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </button>
+              </div>
             </div>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tight mb-8 animate-skew-in">
-              {t.homeTitle.split(' ').map((word, idx) => (
-                <span key={idx} className="block">{word}</span>
-              ))}
-            </h1>
-
-            <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-xl font-medium animate-fade-in delay-100">
-              {t.homeSubtitle}
-            </p>
-
-            <button
-              onClick={() => navigate('/catalogotours')}
-              className="bg-[#927429] hover:bg-[#7a6021] text-white font-bold text-sm tracking-wider uppercase px-8 py-4 flex items-center transition-colors shadow-[6px_6px_0px_0px_#000000] cursor-pointer animate-pulse delay-200"
-            >
-              {t.homeCTA}
-              <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-            </button>
           </div>
+        ))}
+
+        {/* Left Arrow */}
+        <button
+          onClick={() => setCurrentHero((prev) => (prev - 1 + heroes.length) % heroes.length)}
+          className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 bg-black/40 hover:bg-[#927429] border-2 border-white/20 hover:border-[#927429] text-white w-12 h-12 flex items-center justify-center transition-all duration-300"
+          aria-label="Anterior"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => setCurrentHero((prev) => (prev + 1) % heroes.length)}
+          className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 bg-black/40 hover:bg-[#927429] border-2 border-white/20 hover:border-[#927429] text-white w-12 h-12 flex items-center justify-center transition-all duration-300"
+          aria-label="Siguiente"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-3">
+          {heroes.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentHero(index)}
+              className={`transition-all duration-500 border-2 ${
+                index === currentHero
+                  ? 'w-10 h-3 bg-[#927429] border-[#927429]'
+                  : 'w-3 h-3 bg-transparent border-white/40 hover:border-white'
+              }`}
+              aria-label={`Ir al slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
