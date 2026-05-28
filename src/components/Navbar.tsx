@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Search } from 'lucide-react';
 import { useStore, translations } from '../store/useStore';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { language, setLanguage, searchQuery, setSearchQuery } = useStore();
 
   const t = translations[language];
@@ -55,15 +56,22 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.path}
-                className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#1A2530] hover:text-[#927429] transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-colors ${
+                    isActive 
+                      ? 'text-[#927429] underline underline-offset-[6px] decoration-2' 
+                      : 'text-[#1A2530] hover:text-[#927429]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
@@ -122,16 +130,23 @@ export default function Navbar() {
             <Search className="w-4 h-4 text-[#1A2530] opacity-60 ml-2" />
           </div>
 
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.path}
-              onClick={() => setIsMenuOpen(false)}
-              className="block text-sm font-bold uppercase tracking-widest text-[#1A2530] hover:text-[#927429] transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <Link
+                key={link.label}
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block text-sm font-bold uppercase tracking-widest transition-colors ${
+                  isActive 
+                    ? 'text-[#927429] underline underline-offset-[6px] decoration-2' 
+                    : 'text-[#1A2530] hover:text-[#927429]'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <a
             href={`https://wa.me/51999999999?text=${encodeURIComponent(currentWhatsAppText)}`}
             target="_blank"

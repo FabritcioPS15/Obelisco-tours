@@ -130,7 +130,10 @@ export default function InicioPage() {
           </div>
 
           {/* Guias Expertos */}
-          <div className="md:col-span-1 bg-gradient-to-br from-[#405468] to-[#1A2530] p-10 flex flex-col justify-end min-h-[400px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-200">
+          <div 
+            onClick={() => navigate('/guias')}
+            className="md:col-span-1 bg-gradient-to-br from-[#405468] to-[#1A2530] p-10 flex flex-col justify-end min-h-[400px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-200"
+          >
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
             <div className="relative z-10 text-white">
               <MapPin className="w-12 h-12 mb-6 text-[#F5F4EC]" strokeWidth={1.5} />
@@ -141,7 +144,10 @@ export default function InicioPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Refugios */}
-          <div className="bg-[repeating-linear-gradient(45deg,#2D3A4B,#2D3A4B_10px,#25303E_10px,#25303E_20px)] p-10 flex flex-col items-center justify-center min-h-[250px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-300">
+          <div 
+            onClick={() => navigate('/hoteles')}
+            className="bg-[repeating-linear-gradient(45deg,#2D3A4B,#2D3A4B_10px,#25303E_10px,#25303E_20px)] p-10 flex flex-col items-center justify-center min-h-[250px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-300"
+          >
             <div className="relative z-10 text-white text-center">
               <Bed className="w-16 h-16 mb-4 mx-auto text-[#F5F4EC]" strokeWidth={1.5} />
               <h3 className="text-3xl font-black uppercase tracking-wide">{t.homeHotelsTitle}</h3>
@@ -150,7 +156,7 @@ export default function InicioPage() {
 
           {/* Transporte Total */}
           <div
-            onClick={() => navigate('/vuelostransporte')}
+            onClick={() => navigate('/vuelos')}
             className="bg-gradient-to-tr from-[#7a6021] to-[#927429] p-10 flex flex-col justify-end min-h-[250px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-400"
           >
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
@@ -165,7 +171,7 @@ export default function InicioPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
           {/* Aventura Extrema */}
           <div
-            onClick={() => navigate('/catalogotours/aventura')}
+            onClick={() => navigate('/catalogotours')}
             className="bg-gradient-to-br from-[#5a3b81] to-[#8b5c9a] p-10 flex flex-col justify-end min-h-[300px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-500"
           >
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
@@ -176,7 +182,7 @@ export default function InicioPage() {
           </div>
           {/* Experiencia Cultural */}
           <div
-            onClick={() => navigate('/catalogotours/cultura')}
+            onClick={() => navigate('/catalogotours')}
             className="bg-gradient-to-br from-[#3b6a5a] to-[#6abfa2] p-10 flex flex-col justify-end min-h-[300px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-600"
           >
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
@@ -187,7 +193,7 @@ export default function InicioPage() {
           </div>
           {/* Relax y Naturaleza */}
           <div
-            onClick={() => navigate('/catalogotours/naturaleza')}
+            onClick={() => navigate('/hoteles')}
             className="bg-gradient-to-br from-[#4a6b8c] to-[#7da5d0] p-10 flex flex-col justify-end min-h-[300px] shadow-[12px_12px_0px_0px_#1A2530] relative overflow-hidden group cursor-pointer animate-fade-in-up delay-700"
           >
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
@@ -204,7 +210,7 @@ export default function InicioPage() {
         href="https://wa.me/51999999999"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors animate-bounce"
+        className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors"
       >
         <FaWhatsapp className="w-6 h-6" />
       </a>

@@ -33,7 +33,7 @@ export default function VuelosTransportePage() {
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2">
 
           {/* Left Text / Form Side */}
-          <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 py-16 lg:py-32 flex flex-col justify-center">
+          <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 py-16 lg:py-32 flex flex-col justify-center animate-fade-in-left">
             <div className="inline-block bg-[#927429] text-white font-bold text-[10px] tracking-widest px-3 py-1 mb-6 shadow-[2px_2px_0px_0px_#1A2530] w-max uppercase">
               {t.vuelosBadge}
             </div>
@@ -104,7 +104,7 @@ export default function VuelosTransportePage() {
           </div>
 
           {/* Right Image Side */}
-          <div className="relative lg:min-h-screen flex items-center justify-center p-4 lg:p-12 hidden lg:flex">
+          <div className="relative lg:min-h-screen flex items-center justify-center p-4 lg:p-12 hidden lg:flex animate-fade-in-right delay-200">
             <div className="absolute inset-y-12 right-0 w-[90%] bg-[#1A2530] shadow-[-16px_16px_0px_0px_#1A2530]">
               <img
                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop"
@@ -182,7 +182,7 @@ export default function VuelosTransportePage() {
         href="https://wa.me/51999999999"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors animate-bounce"
+        className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors"
       >
         <FaWhatsapp className="w-6 h-6" />
       </a>
@@ -217,8 +217,12 @@ export default function VuelosTransportePage() {
             {language === 'es' ? 'Galería de Destinos' : 'Destination Gallery'}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1,2,3,4,5,6,7,8].map((i) => (
-              <div key={i} className="relative overflow-hidden rounded-lg shadow-lg group">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => (
+              <div 
+                key={i} 
+                className="relative overflow-hidden rounded-lg shadow-lg group animate-fade-in-up"
+                style={{ animationDelay: `${(index % 4) * 100}ms` }}
+              >
                 <img
                   src={`https://images.unsplash.com/photo-${i}0?auto=format&fit=crop&w=400&q=80`}
                   alt="Destination"

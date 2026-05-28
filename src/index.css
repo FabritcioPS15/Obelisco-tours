@@ -27,31 +27,31 @@
 
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in-up {
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in-down {
-    animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in-left {
-    animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in-right {
-    animation: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-zoom-in {
-    animation: zoomIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: zoomIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-skew-in {
-    animation: skewIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: skewIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   /* Delays */

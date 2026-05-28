@@ -14,7 +14,7 @@ export default function GuiasAventuraPage() {
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row relative">
 
           {/* Left Text Side */}
-          <div className="relative z-10 px-4 sm:px-6 lg:px-12 w-full lg:w-1/2 flex flex-col justify-center">
+          <div className="relative z-10 px-4 sm:px-6 lg:px-12 w-full lg:w-1/2 flex flex-col justify-center animate-fade-in-left">
 
             <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black uppercase leading-[0.85] tracking-tighter mb-4">
               <span className="text-[#1A2530] block">NO SOMOS</span>
@@ -30,7 +30,7 @@ export default function GuiasAventuraPage() {
           </div>
 
           {/* Right Image Side */}
-          <div className="w-full lg:w-1/2 mt-12 lg:mt-0 relative">
+          <div className="w-full lg:w-1/2 mt-12 lg:mt-0 relative animate-fade-in-right delay-200">
             <div className="absolute inset-0 bg-[#F5F4EC] z-10" style={{ clipPath: 'polygon(0 0, 20% 0, 0 100%)' }}></div>
             <img
               src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop"
@@ -69,7 +69,7 @@ export default function GuiasAventuraPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {/* Card 1 */}
-            <div className="relative aspect-[3/4] bg-[#1A2530] shadow-[12px_12px_0px_0px_#1A2530] border-2 border-[#1A2530] flex flex-col justify-end p-8 group cursor-pointer">
+            <div className="relative aspect-[3/4] bg-[#1A2530] shadow-[12px_12px_0px_0px_#1A2530] border-2 border-[#1A2530] flex flex-col justify-end p-8 group cursor-pointer animate-fade-in-up" style={{ animationDelay: '100ms' }}>
               <div className="absolute -top-4 right-8 bg-[#E5D5A5] text-[#1A2530] text-[10px] font-black uppercase tracking-widest px-4 py-2 border-2 border-[#1A2530] shadow-[2px_2px_0px_0px_#1A2530] transform rotate-3">
                 VIDA NOCTURNA
               </div>
@@ -82,7 +82,7 @@ export default function GuiasAventuraPage() {
             </div>
 
             {/* Card 2 */}
-            <div className="relative aspect-[3/4] bg-gradient-to-b from-[#A59D8C] to-[#1A2530] mt-12 shadow-[12px_12px_0px_0px_#1A2530] border-2 border-[#1A2530] flex flex-col justify-end p-8 group cursor-pointer">
+            <div className="relative aspect-[3/4] bg-gradient-to-b from-[#A59D8C] to-[#1A2530] mt-12 shadow-[12px_12px_0px_0px_#1A2530] border-2 border-[#1A2530] flex flex-col justify-end p-8 group cursor-pointer animate-fade-in-up" style={{ animationDelay: '200ms' }}>
               <div className="absolute -top-4 -right-4 bg-[#D32F2F] text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 border-2 border-[#1A2530] shadow-[2px_2px_0px_0px_#1A2530] transform -rotate-2 z-10">
                 ADRENALINA
               </div>
@@ -95,7 +95,7 @@ export default function GuiasAventuraPage() {
             </div>
 
             {/* Card 3 */}
-            <div className="relative aspect-[3/4] bg-[#405468] shadow-[12px_12px_0px_0px_#1A2530] border-2 border-[#1A2530] flex flex-col justify-end p-8 group cursor-pointer">
+            <div className="relative aspect-[3/4] bg-[#405468] shadow-[12px_12px_0px_0px_#1A2530] border-2 border-[#1A2530] flex flex-col justify-end p-8 group cursor-pointer animate-fade-in-up" style={{ animationDelay: '300ms' }}>
               <div className="absolute -top-4 -right-2 bg-[#405468] text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 border-2 border-[#1A2530] shadow-[2px_2px_0px_0px_#1A2530]">
                 CULTURA LOCAL
               </div>

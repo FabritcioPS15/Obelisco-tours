@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { ChevronDown, Map, Mountain, Compass } from 'lucide-react';
 import SEO from '../components/SEO';
 import TourCard from '../components/TourCard';
 import { useStore, translations } from '../store/useStore';
 
 export default function CatalogoToursPage() {
-  const { language } = useStore();
+  const { language, searchQuery } = useStore();
   const t = translations[language];
+
+  const [intensity, setIntensity] = useState('all');
+  const [activity, setActivity] = useState('all');
+  const [region, setRegion] = useState('all');
 
   // Bilingual tour database for maximum SEO relevance focusing on Peru and Ayacucho
   const toursBilingual = {
@@ -37,24 +42,6 @@ export default function CatalogoToursPage() {
         badge: { text: 'RECOMENDADO', color: 'bg-[#927429]' },
         icon: <Map className="w-5 h-5 text-[#1A2530]" />,
       },
-        {
-          id: 'apurimac-canyon',
-          title: 'CAÑÓN DEL RÍO APURÍMAC AVENTURA',
-          tags: 'Kayak • Rafting • Naturaleza',
-          description: 'Descubre la fuerza del río Apurímac con emocionantes rutas de kayak y rafting, rodeado de paisajes de alta montaña y bosques nubosos.',
-          image: 'https://images.unsplash.com/photo-1516912911104-8d1bc9e2e2f2?q=80&w=2070&auto=format&fit=crop',
-          badge: { text: 'AVENTURA', color: 'bg-[#1E3A8A]' },
-          icon: <Compass className="w-5 h-5 text-[#1A2530]" />, 
-        },
-        {
-          id: 'tambopata-reserve',
-          title: 'RESERVA NATURAL DE TAMBOPATA',
-          tags: 'Selva • Biodiversidad • Eco‑turismo',
-          description: 'Explora la selva amazónica peruana, avista jaguares, guacamayos y vive una inmersión total en la naturaleza con guías locales.',
-          image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop',
-          badge: { text: 'ECO‑TURISMO', color: 'bg-[#0F9D58]' },
-          icon: <Mountain className="w-5 h-5 text-[#1A2530]" />, 
-        },
         {
           id: 'apurimac-canyon',
           title: 'CAÑÓN DEL RÍO APURÍMAC AVENTURA',
@@ -125,6 +112,37 @@ export default function CatalogoToursPage() {
 
   const tours = toursBilingual[language];
 
+  const filteredTours = tours.filter(tour => {
+    // 1. Text Search (Global Navbar Search)
+    const sq = searchQuery.toLowerCase();
+    const matchesSearch = sq === '' || 
+      tour.title.toLowerCase().includes(sq) || 
+      tour.description.toLowerCase().includes(sq) ||
+      tour.tags.toLowerCase().includes(sq);
+      
+    if (!matchesSearch) return false;
+
+    // 2. Intensity Filter
+    const badgeText = tour.badge.text.toLowerCase();
+    if (intensity === 'high' && !badgeText.includes('alta') && !badgeText.includes('high')) return false;
+    if (intensity === 'extreme' && !badgeText.includes('extrem')) return false;
+    if (intensity === 'moderate' && (badgeText.includes('alta') || badgeText.includes('high') || badgeText.includes('extrem'))) return false;
+
+    // 3. Activity Filter
+    const combinedText = (tour.tags + ' ' + tour.description).toLowerCase();
+    if (activity === 'urban' && !combinedText.includes('urba')) return false;
+    if (activity === 'nature' && !(combinedText.includes('senderismo') || combinedText.includes('trekking') || combinedText.includes('naturaleza') || combinedText.includes('nature') || combinedText.includes('selva') || combinedText.includes('jungle'))) return false;
+    if (activity === 'nightlife' && !combinedText.includes('nocturna') && !combinedText.includes('night')) return false;
+
+    // 4. Region Filter
+    const regionText = (tour.title + ' ' + tour.description).toLowerCase();
+    if (region === 'asia' && !regionText.includes('asia')) return false;
+    if (region === 'sa' && !(regionText.includes('peru') || regionText.includes('perú') || regionText.includes('ayacucho') || regionText.includes('apurimac') || regionText.includes('cusco'))) return false;
+    if (region === 'europe' && !regionText.includes('europa') && !regionText.includes('europe')) return false;
+
+    return true;
+  });
+
   // Specific SEO schemas for search engines
   const catalogSchema = {
     '@context': 'https://schema.org',
@@ -187,11 +205,15 @@ export default function CatalogoToursPage() {
             <div className="flex flex-col">
               <label className="text-xs font-bold uppercase tracking-widest text-[#1A2530] mb-2">{t.catalogFilterIntensity}</label>
               <div className="relative">
-                <select className="w-full bg-transparent border-b-2 border-[#1A2530] pb-2 text-sm font-medium text-[#1A2530] focus:outline-none appearance-none rounded-none cursor-pointer">
-                  <option>{t.allLevels}</option>
-                  <option>{t.moderate}</option>
-                  <option>{t.highIntensity}</option>
-                  <option>{t.extreme}</option>
+                <select 
+                  value={intensity}
+                  onChange={(e) => setIntensity(e.target.value)}
+                  className="w-full bg-transparent border-b-2 border-[#1A2530] pb-2 text-sm font-medium text-[#1A2530] focus:outline-none appearance-none rounded-none cursor-pointer"
+                >
+                  <option value="all">{t.allLevels}</option>
+                  <option value="moderate">{t.moderate}</option>
+                  <option value="high">{t.highIntensity}</option>
+                  <option value="extreme">{t.extreme}</option>
                 </select>
                 <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1A2530] pointer-events-none" />
               </div>
@@ -200,11 +222,15 @@ export default function CatalogoToursPage() {
             <div className="flex flex-col">
               <label className="text-xs font-bold uppercase tracking-widest text-[#1A2530] mb-2">{t.catalogFilterActivity}</label>
               <div className="relative">
-                <select className="w-full bg-transparent border-b-2 border-[#1A2530] pb-2 text-sm font-medium text-[#1A2530] focus:outline-none appearance-none rounded-none cursor-pointer">
-                  <option>{t.allActivities}</option>
-                  <option>{t.urbanExploration}</option>
-                  <option>{t.natureTrekking}</option>
-                  <option>{t.nightlifeMusic}</option>
+                <select 
+                  value={activity}
+                  onChange={(e) => setActivity(e.target.value)}
+                  className="w-full bg-transparent border-b-2 border-[#1A2530] pb-2 text-sm font-medium text-[#1A2530] focus:outline-none appearance-none rounded-none cursor-pointer"
+                >
+                  <option value="all">{t.allActivities}</option>
+                  <option value="urban">{t.urbanExploration}</option>
+                  <option value="nature">{t.natureTrekking}</option>
+                  <option value="nightlife">{t.nightlifeMusic}</option>
                 </select>
                 <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1A2530] pointer-events-none" />
               </div>
@@ -213,11 +239,15 @@ export default function CatalogoToursPage() {
             <div className="flex flex-col">
               <label className="text-xs font-bold uppercase tracking-widest text-[#1A2530] mb-2">{t.catalogFilterRegion}</label>
               <div className="relative">
-                <select className="w-full bg-transparent border-b-2 border-[#1A2530] pb-2 text-sm font-medium text-[#1A2530] focus:outline-none appearance-none rounded-none cursor-pointer">
-                  <option>{t.global}</option>
-                  <option>{t.asia}</option>
-                  <option>{language === 'es' ? 'Sudamérica (Perú)' : 'South America (Peru)'}</option>
-                  <option>{t.europe}</option>
+                <select 
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                  className="w-full bg-transparent border-b-2 border-[#1A2530] pb-2 text-sm font-medium text-[#1A2530] focus:outline-none appearance-none rounded-none cursor-pointer"
+                >
+                  <option value="all">{t.global}</option>
+                  <option value="asia">{t.asia}</option>
+                  <option value="sa">{language === 'es' ? 'Sudamérica (Perú)' : 'South America (Peru)'}</option>
+                  <option value="europe">{t.europe}</option>
                 </select>
                 <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1A2530] pointer-events-none" />
               </div>
@@ -226,17 +256,25 @@ export default function CatalogoToursPage() {
         </div>
 
         {/* Tours Grid with staggered micro-animations */}
-        <div className="grid gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {tours.map((tour, index) => (
-            <div 
-              key={tour.id} 
-              className={`animate-fade-in-up`}
-              style={{ animationDelay: `${400 + (index * 150)}ms` }}
-            >
-              <TourCard {...tour} />
-            </div>
-          ))}
-        </div>
+        {filteredTours.length > 0 ? (
+          <div className="grid gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
+            {filteredTours.map((tour, index) => (
+              <div 
+                key={tour.id} 
+                className={`animate-fade-in-up`}
+                style={{ animationDelay: `${100 + (index * 50)}ms` }}
+              >
+                <TourCard {...tour} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <Mountain className="w-16 h-16 text-[#927429] mx-auto mb-4 opacity-50" />
+            <h3 className="text-2xl font-bold text-[#1A2530]">{t.searchNoResults || 'No se encontraron resultados'}</h3>
+            <p className="text-[#405468] mt-2">Prueba cambiando los filtros de búsqueda.</p>
+          </div>
+        )}
       </div>
     </div>
   );
